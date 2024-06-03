@@ -37,6 +37,8 @@ public class ContaPoupanca extends Conta {
     public void sacar(double valor) {
         if (valor > saldo || valor < 0) {
             System.out.println("valor de saque inválido");
+        } else if (valor > 5000) {
+            System.out.println("O limite de saque para contas poupança é de R$ 5000");
         } else {
             saldo -= valor;
             getExtrato().add("Saque no valor de:             " + valor);

@@ -1,6 +1,6 @@
 package entities;
 
-import static app.Main.scString;
+import static app.Main.*;
 
 public class PessoaJuridica extends Pessoa {
     private String CNPJ;
@@ -24,6 +24,8 @@ public class PessoaJuridica extends Pessoa {
 
     @Override
     public void imprimirInfos() {
-
+        System.out.println(getNome());
+        System.out.println("Endereço: " + getEndereco());
+        System.out.println("CNPJ: " + CNPJ);
     }
 }
