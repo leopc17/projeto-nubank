@@ -61,7 +61,7 @@ public class Menu {
                     }
 
                     if (tipoConta == 1) {
-                        System.out.print("Informe a senha: ");
+                        System.out.print("Informe uma senha numérica: ");
                         int senha = sc.nextInt();
 
                         System.out.print("Informe a taxa de rendimento mensal da conta poupança em porcentagem: ");
@@ -71,7 +71,7 @@ public class Menu {
 
                         System.out.println("Conta criada com sucesso!");
                     } else {
-                        System.out.print("Informe a senha: ");
+                        System.out.print("Informe uma senha numérica: ");
                         int senha = sc.nextInt();
 
                         contas.add(new ContaCorrente(p1, senha));
@@ -83,7 +83,7 @@ public class Menu {
 
                     System.out.println("\nNúmero da Conta | Tipo da Conta | Nome do Titular");
                     for (Conta c : contas) {
-                        System.out.println(i + "               | " + c.gerarResumo());
+                        System.out.println(i + "               | " + c.getClass().getSimpleName() + " | " + c.getTitular().getNome());
                         i++;
                     }
 
@@ -96,7 +96,15 @@ public class Menu {
                     }
 
                     Conta c1 = contas.get(nConta);
-                    
+
+                    System.out.print("Digite a senha da conta: ");
+                    int senha = sc.nextInt();
+
+                    if (!c1.verificarSenha(senha)) {
+                        System.out.println("Senha incorreta");
+                        break;
+                    }
+
                     int escolha2;
                     do {
                         System.out.println("Escolha uma das opções:\n");
@@ -110,6 +118,7 @@ public class Menu {
                         escolha2 = sc.nextInt();
 
                         switch (escolha2) {
+                            case 0 -> System.out.println();
                             case 1 -> efetuarSaque(c1);
                             case 2 -> efetuarDeposito(c1);
                             case 3 -> c1.gerarExtrato();
