@@ -6,22 +6,16 @@ import java.util.List;
 public abstract class Conta implements Transacoes {
 
     private Pessoa titular;
-    private int senha;
     protected double saldo;
 
     private List<String> extrato = new ArrayList<>();
 
-    public Conta(Pessoa titular, int senha) {
+    public Conta(Pessoa titular) {
         this.titular = titular;
-        this.senha = senha;
     }
 
     public Pessoa getTitular() {
         return titular;
-    }
-
-    public int getSenha() {
-        return senha;
     }
 
     public double getSaldo() {
@@ -32,9 +26,7 @@ public abstract class Conta implements Transacoes {
         return extrato;
     }
 
-    public boolean verificarSenha(int senha) {
-        return this.senha == senha;
-    }
-
     public abstract void gerarExtrato();
+
+    public abstract void calcularRendimento(int qtdMeses);
 }

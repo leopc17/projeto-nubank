@@ -1,6 +1,8 @@
 package utils;
 
 import entities.*;
+import pagamentos.Boleto;
+import pagamentos.PIX;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -60,23 +62,19 @@ public class Menu {
                         p1 = PessoaJuridica.criarPessoaJuridica();
                     }
 
-                    if (tipoConta == 1) {
-                        System.out.print("Informe uma senha numérica: ");
-                        int senha = sc.nextInt();
+                    // caso a conta seja poupança o usuário informa a taxa de rendimento, caso não ele apenas cria uma conta corrente
 
+                    if (tipoConta == 1) {
                         System.out.print("Informe a taxa de rendimento mensal da conta poupança em porcentagem: ");
                         double taxa = sc.nextDouble();
 
-                        contas.add(new ContaPoupanca(p1, senha, taxa));
+                        contas.add(new ContaPoupanca(p1, taxa));
 
                         System.out.println("Conta criada com sucesso!");
                     } else {
-                        System.out.print("Informe uma senha numérica: ");
-                        int senha = sc.nextInt();
-
-                        contas.add(new ContaCorrente(p1, senha));
-                        System.out.println("Conta criada com sucesso!");
+                        contas.add(new ContaCorrente(p1));
                     }
+                    System.out.println("Conta criada com sucesso!");
                     break;
                 case 2:
                     int i = 0;
@@ -97,14 +95,6 @@ public class Menu {
 
                     Conta c1 = contas.get(nConta);
 
-                    System.out.print("Digite a senha da conta: ");
-                    int senha = sc.nextInt();
-
-                    if (!c1.verificarSenha(senha)) {
-                        System.out.println("Senha incorreta");
-                        break;
-                    }
-
                     int escolha2;
                     do {
                         System.out.println("Escolha uma das opções:\n");
@@ -112,9 +102,9 @@ public class Menu {
                         System.out.println("1 - Sacar");
                         System.out.println("2 - Depositar");
                         System.out.println("3 - Gerar Extrato");
-                        if (c1 instanceof ContaPoupanca) {
-                            System.out.println("4 - Calcular Rendimento");
-                        }
+                        System.out.println("4 - Calcular Rendimento");
+                        System.out.println("5 - Realizar Pagamento");
+
                         escolha2 = sc.nextInt();
 
                         switch (escolha2) {
@@ -123,6 +113,7 @@ public class Menu {
                             case 2 -> efetuarDeposito(c1);
                             case 3 -> c1.gerarExtrato();
                             case 4 -> calcRendimento(c1);
+                            case 5 -> realizarPagamento();
                             default -> System.out.println("Opção inválida");
                         }
 
@@ -133,6 +124,21 @@ public class Menu {
                     break;
             }
         } while (escolha != 3);
+    }
+
+    private static void realizarPagamento() {
+        System.out.print("Informe o valor do pagamento: ");
+        double valor = sc.nextDouble();
+
+        System.out.println("Informe a forma de pagamento");
+        System.out.println("1 - PIX");
+        System.out.println("2 - Boleto");
+        int escolha = sc.nextInt();
+
+        switch (escolha) {
+            case 1 -> new PIX().realizarPagamento(valor);
+            case 2 -> new Boleto().realizarPagamento(valor);
+        }
     }
 
     private static void efetuarSaque(Conta c1) {
@@ -148,13 +154,9 @@ public class Menu {
     }
 
     private static void calcRendimento(Conta c1) {
-        if (c1 instanceof ContaPoupanca) {
-            System.out.println("Digite a quantidade de mêses: ");
-            int qtdMeses = sc.nextInt();
-            ((ContaPoupanca) c1).calcularRendimento(qtdMeses);
-        } else {
-            System.out.println("Opção inválida");
-        }
+        System.out.println("Digite a quantidade de mêses: ");
+        int qtdMeses = sc.nextInt();
+        c1.calcularRendimento(qtdMeses);
     }
 
     public static void limparTela() {

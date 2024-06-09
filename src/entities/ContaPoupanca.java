@@ -4,11 +4,12 @@ public class ContaPoupanca extends Conta {
 
     private double taxaRendimentoMensal;
 
-    public ContaPoupanca(Pessoa titular, int senha, double taxaRendimentoMensal) {
-        super(titular, senha);
+    public ContaPoupanca(Pessoa titular, double taxaRendimentoMensal) {
+        super(titular);
         this.taxaRendimentoMensal = taxaRendimentoMensal;
     }
 
+    @Override
     public void calcularRendimento(int qtdMeses) {
         double juros;
 

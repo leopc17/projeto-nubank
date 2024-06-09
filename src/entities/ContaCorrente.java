@@ -4,8 +4,8 @@ public class ContaCorrente extends Conta {
 
     private final double TAXA_SAQUE = 0.03;
 
-    public ContaCorrente(Pessoa titular, int senha) {
-        super(titular, senha);
+    public ContaCorrente(Pessoa titular) {
+        super(titular);
     }
 
     @Override
@@ -25,6 +25,11 @@ public class ContaCorrente extends Conta {
             valor -= calcTaxaSaque;
             getExtrato().add("Saque             " + valor);
         }
+    }
+
+    @Override
+    public void calcularRendimento(int qtdMeses) {
+        System.out.println("Não é possivel realizar investimentos na conta corrente");
     }
 
     @Override
