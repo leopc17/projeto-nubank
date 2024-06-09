@@ -2,6 +2,8 @@ package entities;
 
 public class ContaCorrente extends Conta {
 
+    private final double TAXA_SAQUE = 0.03;
+
     public ContaCorrente(Pessoa titular, int senha) {
         super(titular, senha);
     }
@@ -18,9 +20,9 @@ public class ContaCorrente extends Conta {
             System.out.println("valor de saque inválido");
         } else {
             saldo -= valor;
-            double taxaSaque = valor * 3 / 100;
-            System.out.println("Taxa de saque: " + taxaSaque);
-            valor -= taxaSaque;
+            double calcTaxaSaque = valor * TAXA_SAQUE;
+            System.out.println("Valor da taxa de saque: " + calcTaxaSaque);
+            valor -= calcTaxaSaque;
             getExtrato().add("Saque             " + valor);
         }
     }
@@ -30,9 +32,10 @@ public class ContaCorrente extends Conta {
         System.out.println("      E X T R A T O  B A N C Á R I O      ");
         System.out.println("------------------------------------------");
         System.out.println("Instituição: NUBANK");
-        System.out.print("Titular: ");
-        getTitular().imprimirInfos();
+        System.out.println("Titular: ");
+        System.out.println(getTitular());
         System.out.println("Tipo da conta: Conta Corrente");
+        System.out.println("Taxa de saque: " + TAXA_SAQUE * 100 + "%");
         System.out.println("------------------------------------------");
         System.out.println("HISTÓRICO                            VALOR");
         System.out.println("------------------------------------------");

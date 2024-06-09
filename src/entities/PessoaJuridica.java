@@ -23,9 +23,8 @@ public class PessoaJuridica extends Pessoa {
     }
 
     @Override
-    public void imprimirInfos() {
-        System.out.println(getNome());
-        System.out.println("Endereço: " + getEndereco());
-        System.out.println("CNPJ: " + CNPJ);
+    public String toString() {
+        return super.toString()
+                + "CNPJ: " + CNPJ + "\n";
     }
 }

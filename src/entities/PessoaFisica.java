@@ -23,9 +23,8 @@ public class PessoaFisica extends Pessoa {
     }
 
     @Override
-    public void imprimirInfos() {
-        System.out.println(getNome());
-        System.out.println("Endereço: " + getEndereco());
-        System.out.println("CPF: " + CPF);
+    public String toString() {
+        return super.toString()
+               + "CPF: " + CPF + "\n";
     }
 }

@@ -50,8 +50,10 @@ public class ContaPoupanca extends Conta {
         System.out.println("      E X T R A T O  B A N C Á R I O      ");
         System.out.println("------------------------------------------");
         System.out.println("Instituição: NUBANK");
-        System.out.println("Titular: " + getTitular().getNome());
+        System.out.println("Titular: ");
+        System.out.println(getTitular());
         System.out.println("Tipo da conta: Conta Poupança");
+        System.out.println("Limite de saque: R$ 5000");
         System.out.println("Taxa de Rendimento Mensal: " + taxaRendimentoMensal + "%");
         System.out.println("------------------------------------------");
         System.out.println("HISTÓRICO                            VALOR");

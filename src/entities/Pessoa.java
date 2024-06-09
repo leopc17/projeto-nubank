@@ -25,5 +25,9 @@ public abstract class Pessoa {
         this.endereco = endereco;
     }
 
-    public abstract void imprimirInfos();
+    @Override
+    public String toString() {
+        return "Nome: " + nome + "\n"
+               + "Endereço: " + endereco + "\n";
+    }
 }
