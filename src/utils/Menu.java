@@ -69,8 +69,6 @@ public class Menu {
                         double taxa = sc.nextDouble();
 
                         contas.add(new ContaPoupanca(p1, taxa));
-
-                        System.out.println("Conta criada com sucesso!");
                     } else {
                         contas.add(new ContaCorrente(p1));
                     }

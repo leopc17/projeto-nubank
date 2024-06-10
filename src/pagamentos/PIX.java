@@ -10,7 +10,7 @@ public class PIX implements Pagamento {
 
     @Override
     public void realizarPagamento(double valor) {
-        this.valor -= valor;
+        this.valor = valor;
         System.out.println("Realizando PIX...");
         System.out.println("Deseja imprimir o comprovante? 1 - Sim \n 2 - Não \n");
         int escolha = sc.nextInt();

@@ -13,11 +13,11 @@ public class Boleto implements Pagamento {
     @Override
     public void realizarPagamento(double valor) {
         valor -= TAXA_EMISSAO;
-        this.valor -= valor;
+        this.valor = valor;
 
         System.out.println("Gerando Boleto...");
-        System.out.println("Taxa de emissão do boleto: " + TAXA_EMISSAO);
-        System.out.println("Deseja imprimir o comprovante? 1 - Sim \n 2 - Não \n");
+        System.out.println("Taxa de emissão do boleto: " + TAXA_EMISSAO + " R$");
+        System.out.println("Deseja imprimir o comprovante?\n1 - Sim \n2 - Não \n");
         int escolha = sc.nextInt();
 
         switch (escolha) {
